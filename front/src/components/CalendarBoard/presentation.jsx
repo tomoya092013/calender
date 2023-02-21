@@ -7,8 +7,9 @@ import CarederElement from "../CalendarElement";
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 // const calendar = createCalendar();
 
-const CalendarBoard = ({ calendar }) => {
-  console.log(calendar);
+const CalendarBoard = ({ calendar, month }) => {
+  // console.log(calendar);
+  // console.log(month);
   return (
     <div className={styles.container}>
       <ImageList className={styles.grid} cols={7} gap={0} rowHeight="auto">
@@ -28,7 +29,7 @@ const CalendarBoard = ({ calendar }) => {
 
         {calendar.map((c) => (
           <li key={c.toISOString()}>
-            <CarederElement day={c} />
+            <CarederElement day={c} month={month} />
           </li>
         ))}
       </ImageList>

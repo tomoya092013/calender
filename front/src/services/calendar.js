@@ -20,7 +20,6 @@ export const createCalendar = (month) => {
   // console.log(firstDayIndex);
   // const daY = firstDay.add(-1, "day");
   // console.log(daY);
-
   return Array(35)
     .fill(0)
     .map((_, i) => {
@@ -30,6 +29,27 @@ export const createCalendar = (month) => {
     });
 };
 
+export const getNextMonth = (month) => {
+  const day = getMonth(month).add(1, "month");
+  return formatMonth(day);
+};
+
+export const getPreviousMonth = (month) => {
+  // console.log(month);
+  const day = getMonth(month).add(-1, "month");
+  // console.log(day);
+  // console.log(formatMonth(day));
+  return formatMonth(day);
+};
+
 export const getMonth = ({ year, month }) => {
+  // console.log(year);
+  // console.log(month);
+  // console.log(dayjs(`${year}-${month}`));
   return dayjs(`${year}-${month}`);
 };
+
+export const formatMonth = (day) => ({
+  month: day.month() + 1,
+  year: day.year(),
+});

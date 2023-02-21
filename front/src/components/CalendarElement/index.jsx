@@ -2,13 +2,26 @@ import React from "react";
 import * as styles from "./style.css";
 import { Typography } from "@material-ui/core";
 import dayjs from "dayjs";
-import { isSameMonth, isFirstDay, isSameDay } from "../../services/calendar";
+import {
+  isSameMonth,
+  isFirstDay,
+  isSameDay,
+  getMonth,
+} from "../../services/calendar";
 
-const CarederElement = ({ day }) => {
+const CarederElement = ({ day, month }) => {
+  const currentMonth = getMonth(month);
+  // console.log(currentMonth);
+  // console.log(month);
+  // console.log(day);
+
+  const isCurrentMonth = isSameMonth(day, currentMonth);
+  // const isCurrentMonth = isSameMonth(today, day);
+  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
   const today = dayjs();
   const isToday = isSameDay(day, today);
-  const isCurrentMonth = isSameMonth(today, day);
-  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
   const format = isFirstDay(day) ? "M月D日" : "D";
   return (
     <div className={styles.element}>
