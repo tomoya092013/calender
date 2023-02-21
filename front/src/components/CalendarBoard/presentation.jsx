@@ -7,7 +7,7 @@ import CarederElement from "../CalendarElement";
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 // const calendar = createCalendar();
 
-const CalendarBoard = ({ calendar, month }) => {
+const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
   // console.log(calendar);
   // console.log(month);
   return (
@@ -28,7 +28,7 @@ const CalendarBoard = ({ calendar, month }) => {
         ))}
 
         {calendar.map((c) => (
-          <li key={c.toISOString()}>
+          <li key={c.toISOString()} onClick={() => openAddScheduleDialog()}>
             <CarederElement day={c} month={month} />
           </li>
         ))}

@@ -2,11 +2,24 @@ import { connect } from "react-redux";
 import CalendarBoard from "./presentation";
 //カレンダーの配列をつくるため
 import { createCalendar } from "../../services/calendar";
+import { addScheduleOpenDialog } from "../../redux/addSchedule/actions";
 
 const mapStateToProps = (state) => ({ calendar: state.calendar });
-const mergeProps = (stateProps) => ({
+const mapDispatchToProps = (dispatch) => ({
+  openAddScheduleDialog: () => {
+    dispatch(addScheduleOpenDialog());
+  },
+});
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps, //下でmapStateToPropsの値を定義しているから、なくても動く
+  ...dispatchProps,
+  // openAddScheduleDialog: dispatchProps.openAddScheduleDialog,
   month: stateProps.calendar,
   calendar: createCalendar(stateProps.calendar),
 });
 
-export default connect(mapStateToProps, null, mergeProps)(CalendarBoard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(CalendarBoard);
